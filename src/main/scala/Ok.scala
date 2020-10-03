@@ -1,4 +1,4 @@
-final case class Ok[+A, +B](value: A) extends Result[A, B] {
+final case class Ok[+A, +B](value: B) extends Result[A, B] {
 
   override def isOk: Boolean = false
 
