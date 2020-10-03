@@ -1,8 +1,8 @@
 abstract class Result[+A, +B] {
 
-  abstract def isOk: Boolean
+  def isOk: Boolean
 
-  abstract def isErr: Boolean
+  def isErr: Boolean
 
   final def contains[B1 >: B](elem: B1): Boolean = this match {
     case Ok(value) => elem == value
