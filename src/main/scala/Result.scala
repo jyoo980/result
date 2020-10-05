@@ -25,4 +25,24 @@ abstract class Result[+A, +B] {
     case Ok(value) => f(value)
     case Err(value) => Err(value)
   }
+
+  def fold[C](fa: A => C, fb: B => C): C = this match {
+    case Ok(value) => fb(value)
+    case Err(value) => fa(value)
+  }
+
+  def forall(f: B => Boolean): Boolean = this match {
+    case Ok(value) => f(value)
+    case _ => true
+  }
+
+  def foreach[U](f: B => U): Unit = this match {
+    case Ok(value) => f(value)
+    case _ => ()
+  }
+
+  def getOrElse[B1 >: B](or: => B1): B1 = this match {
+    case Ok(value) => value
+    case _ => or
+  }
 }
