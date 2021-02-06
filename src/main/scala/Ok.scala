@@ -4,4 +4,3 @@ final case class Ok[+A, +B](value: B) extends Result[A, B] {
 
   override def isErr: Boolean = false
 }
-

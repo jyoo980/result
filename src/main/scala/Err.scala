@@ -1,4 +1,4 @@
-final case class Err[+A, +B](error: A) extends Result [A, B] {
+final case class Err[+A, +B](error: A) extends Result[A, B] {
 
   override def isOk: Boolean = false
 

@@ -1,8 +1,7 @@
 import org.scalatest.matchers._
 import org.scalatest.flatspec.AnyFlatSpec
 
-class OkSpec extends AnyFlatSpec with should.Matchers
-  with ResultFixture {
+class OkSpec extends AnyFlatSpec with should.Matchers with ResultFixture {
 
   "an Ok[A]" should "return true for Result.isOk" in {
     val okNum = toOk(2)
@@ -41,18 +40,18 @@ class OkSpec extends AnyFlatSpec with should.Matchers
 
   it should "return true given a predicate that the value fulfils" in {
     final case class StudentId(name: String, number: Integer)
-    val id = StudentId("John Smith", 1234123)
+    val id   = StudentId("John Smith", 1234123)
     val okId = toOk(id)
     okId.forall(_.name == "John Smith") shouldBe true
   }
 
   it should "apply an effect-ful function for a value" in {
     final case class Course(code: Int, description: String)
-    val course = Course(310, "Software Engineering")
+    val course   = Course(310, "Software Engineering")
     val okCourse = toOk(course)
-    okCourse.foreach(course => {
+    okCourse.foreach { course =>
       println(s"Course code: ${course.code}, Description: ${course.description}")
-    }) shouldBe ()
+    } shouldBe ()
   }
 
   it should "return the value and not execute the alternative for .getOrElse" in {
